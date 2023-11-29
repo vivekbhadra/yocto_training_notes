@@ -19,3 +19,58 @@ E: Package 'xterm' has no installation candidate
 
 ubuntu@ip-172-31-3-150:~/yocto_training/source$ sudo apt-get update
 
+ubuntu@ip-172-31-3-150:~/yocto_training/source$ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \
+     build-essential chrpath socat cpio python3 python3-pip python3-pexpect \
+     xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
+     pylint3 xterm
+Yocto Link: 
+https://docs.yoctoproject.org/2.5/brief-yoctoprojectqs/brief-yoctoprojectqs.html
+
+ubuntu@ip-172-31-3-150:~/yocto_training/source$ git clone git://git.yoctoproject.org/poky
+ubuntu@ip-172-31-3-150:~/yocto_training/source$ cd poky 
+ubuntu@ip-172-31-3-150:~/yocto_training/source$ git checkout zeus 
+ubuntu@ip-172-31-3-150:~/yocto_training/source$ source oe-init-build-env ../../build
+ubuntu@ip-172-31-3-150:~/yocto_training/build$ sudo apt install python2
+ubuntu@ip-172-31-3-150:~/yocto_training/build$ bitmake -h
+ubuntu@ip-172-31-3-150:~/yocto_training/build$ sudo apt  install tree
+ubuntu@ip-172-31-3-150:~/yocto_training/build$ tree conf/
+conf/
+├── bblayers.conf
+├── local.conf
+└── templateconf.cfg
+ubuntu@ip-172-31-3-150:~/yocto_training/build$ bitbake core-image-minimal
+Parsing recipes: 100% |#######################################################################################################################################################| Time: 0:00:15
+Parsing of 773 .bb files complete (0 cached, 773 parsed). 1301 targets, 41 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "1.44.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "ubuntu-20.04"
+TARGET_SYS           = "x86_64-poky-linux"
+MACHINE              = "qemux86-64"
+DISTRO               = "poky"
+DISTRO_VERSION       = "3.0.4"
+TUNE_FEATURES        = "m64 core2"
+TARGET_FPU           = ""
+meta
+meta-poky
+meta-yocto-bsp       = "zeus:daf096e295121ea49ebf21f8070e9a6e28f5d46c"
+
+NOTE: Fetching uninative binary shim from http://downloads.yoctoproject.org/releases/uninative/2.9/x86_64-nativesdk-libc.tar.xz;sha256sum=d07916b95c419c81541a19c8ef0ed8cbd78ae18437ff28a4c8a60ef40518e423
+Initialising tasks: 100% |####################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 820 Found 0 Missed 820 Current 0 (0% match, 0% complete)
+NOTE: Executing Tasks
+NOTE: Setscene tasks completed
+WARNING: expat-native-2.2.8-r0 do_fetch: Failed to fetch URL https://downloads.sourceforge.net/expat/expat-2.2.8.tar.bz2, attempting MIRRORS if available
+WARNING: libpcre-8.43-r0 do_fetch: Failed to fetch URL https://ftp.pcre.org/pub/pcre/pcre-8.43.tar.bz2, attempting MIRRORS if available
+Currently  8 running tasks (380 of 2664)  14% |####################                                                                                                                         |
+0: binutils-cross-x86_64-2.32.0-r0 do_fetch (pid 27300)  23% |###########################                                                                                           | 2.38M/s
+1: linux-yocto-5.2.32+gitAUTOINC+bb2776d6be_73b12de4c8-r0 do_fetch (pid 61614)   5% |####                                                                                           | 2.07M/s
+2: gmp-native-6.1.2-r0 do_configure - 31s (pid 82644)
+3: patch-native-2.7.6-r0 do_configure - 30s (pid 83403)
+4: bison-native-3.4.1-r0 do_configure - 22s (pid 94513)
+5: pkgconfig-native-0.29.2+gitAUTOINC+edf8e6f0ea-r0 do_compile - 6s (pid 116490)
+6: linux-libc-headers-5.2-r0 do_unpack - 2s (pid 119996)
+7: gperf-native-3.1-r0 do_compile - 0s (pid 122198)
+
