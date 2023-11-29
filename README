@@ -1,5 +1,21 @@
-Poky Dependencies:
+Ubuntu 20.4 username: ubuntu
+
+Poky Dependencies List:
 sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \
      build-essential chrpath socat cpio python3 python3-pip python3-pexpect \
      xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
      pylint3 xterm
+Error:
+E: Package 'texinfo' has no installation candidate
+E: Unable to locate package chrpath
+E: Package 'python3-pip' has no installation candidate
+E: Unable to locate package python3-git
+E: Unable to locate package libegl1-mesa
+E: Unable to locate package libsdl1.2-dev
+E: Couldn't find any package by glob 'libsdl1.2-dev'
+E: Couldn't find any package by regex 'libsdl1.2-dev'
+E: Unable to locate package pylint3
+E: Package 'xterm' has no installation candidate
+
+ubuntu@ip-172-31-3-150:~/yocto_training/source$ sudo apt-get update
+
