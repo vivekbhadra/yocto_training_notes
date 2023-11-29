@@ -74,3 +74,13 @@ Currently  8 running tasks (380 of 2664)  14% |####################             
 6: linux-libc-headers-5.2-r0 do_unpack - 2s (pid 119996)
 7: gperf-native-3.1-r0 do_compile - 0s (pid 122198)
 
+ubuntu@ip-172-31-3-150:~/yocto_training/build$ nproc
+8
+
+ubuntu@ip-172-31-3-150:~/yocto_training/build$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:          32090         452        2304           0       29334       31171
+Swap:             0           0           0
+
+
+
