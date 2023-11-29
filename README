@@ -82,5 +82,85 @@ ubuntu@ip-172-31-3-150:~/yocto_training/build$ free -m
 Mem:          32090         452        2304           0       29334       31171
 Swap:             0           0           0
 
+Running the created image
+=========================
+ubuntu@ip-172-31-3-150:~/yocto_training/build$ runqemu qemux86-64 nographic core-image-minimal
+core-image-minimal - name of the image we just built. 
+...
+...
+INIT: Entering runlevel: 5
+Configuring network interfaces... ip: RTNETLINK answers: File exists
+Starting syslogd/klogd: done
+
+Poky (Yocto Project Reference Distro) 3.0.4 qemux86-64 /dev/ttyS0
+
+qemux86-64 login: root
+root@qemux86-64:~# df -h
+Filesystem                Size      Used Available Use% Mounted on
+/dev/root                10.3M      7.9M      1.6M  83% /
+devtmpfs                113.3M         0    113.3M   0% /dev
+tmpfs                   115.6M    112.0K    115.5M   0% /run
+tmpfs                   115.6M     84.0K    115.5M   0% /var/volatile
+
+root@qemux86-64:~# cat /proc/cpuinfo
+processor       : 0
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 15
+model name      : Intel(R) Core(TM)2 Duo CPU     T7700  @ 2.40GHz
+stepping        : 11
+cpu MHz         : 2296.579
+cache size      : 16384 KB
+physical id     : 0
+siblings        : 1
+core id         : 0
+cpu cores       : 1
+apicid          : 0
+initial apicid  : 0
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 10
+wp              : yes
+flags           : fpu de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush acpi mmx fxsr sse sse2 ss syscall nx lm constant_tsc rep_good nopl cpuid pni monitor ssse3 cx1i
+bugs            : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips        : 4593.15
+clflush size    : 64
+cache_alignment : 64
+address sizes   : 40 bits physical, 48 bits virtual
+power management:
+
+root@qemux86-64:~# uname -a
+Linux qemux86-64 5.2.32-yocto-standard #1 SMP PREEMPT Wed Nov 29 21:17:26 UTC 2023 x86_64 GNU/Linux
+
+root@qemux86-64:~# ifconfig
+eth0      Link encap:Ethernet  HWaddr 52:54:00:12:34:02
+          inet addr:192.168.7.2  Bcast:192.168.7.255  Mask:255.255.255.0
+          inet6 addr: fe80::5054:ff:fe12:3402/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:6 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:11 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:496 (496.0 B)  TX bytes:866 (866.0 B)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+root@qemux86-64:~# poweroff
+
+BUILDING for arm:
+=================
+Modify the file "conf/local.conf" and set the MACHINE to: 
+MACHINE ?= "qemuarm"
+# MACHINE ??= "qemux86-64"
+
+
+
+
 
 
