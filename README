@@ -163,9 +163,64 @@ MACHINE ?= "qemuarm"
 
 ubuntu@ip-172-31-1-209:~/yocto_training/build$ bitbake core-image-minimal
 
+INSTALLING PACKAGES
+===================
+vim conf/local.conf add the following:
+IMAGE_INSTALL_append += " usbutils"
 
+ubuntu@ip-172-31-1-209:~/yocto_training/build$ bitbake -e core-image-minimal | grep ^IMAGE_INSTALL=
+IMAGE_INSTALL="packagegroup-core-boot   usbutils"
 
+ubuntu@ip-172-31-1-209:~/yocto_training/build$ bitbake core-image-minimal
+WARNING: Host distribution "ubuntu-20.04" has not been validated with this version of the build system; you may possibly experience unexpected failures. It is recommended that you use a tested distribution.
+Loading cache: 100% |#########################################################################################################################################################| Time: 0:00:00
+Loaded 1301 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
 
+Build Configuration:
+BB_VERSION           = "1.44.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "qemuarm"
+DISTRO               = "poky"
+DISTRO_VERSION       = "3.0.4"
+TUNE_FEATURES        = "arm armv7ve vfp thumb neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta
+meta-poky
+meta-yocto-bsp       = "zeus:daf096e295121ea49ebf21f8070e9a6e28f5d46c"
 
+Initialising tasks: 100% |####################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 14 Found 0 Missed 14 Current 812 (0% match, 98% complete)
+NOTE: Executing Tasks
+NOTE: Setscene tasks completed
+NOTE: Tasks Summary: Attempted 2681 tasks of which 2641 didn't need to be rerun and all succeeded.
 
+Summary: There was 1 WARNING message shown.
+
+ubuntu@ip-172-31-1-209:~/yocto_training/build$ runqemu nographic core-image-minimal
+INIT: version 2.88 booting
+[    4.801785] input: QEMU QEMU USB Tablet as /devices/platform/4010000000.pcie/pci0000:00/0000:00:02.0/usb1/1-1/1-1:1.0/0003:0627:0001.0001/input/input0
+[    4.803424] hid-generic 0003:0627:0001.0001: input: USB HID v0.01 Mouse [QEMU QEMU USB Tablet] on usb-0000:00:02.0-1/input0
+[    4.951790] usb 1-2: new high-speed USB device number 3 using xhci_hcd
+[    5.181023] input: QEMU QEMU USB Keyboard as /devices/platform/4010000000.pcie/pci0000:00/0000:00:02.0/usb1/1-2/1-2:1.0/0003:0627:0001.0002/input/input1
+Starting udev[    5.263847] hid-generic 0003:0627:0001.0002: input: USB HID v1.11 Keyboard [QEMU QEMU USB Keyboard] on usb-0000:00:02.0-2/input0
+
+[    5.522666] udevd[161]: starting version 3.2.8
+[    5.594777] udevd[162]: starting eudev-3.2.8
+[    6.451447] EXT4-fs (vda): re-mounted. Opts: (null)
+INIT: Entering runlevel: 5
+Configuring network interfaces... ip: RTNETLINK answers: File exists
+Starting syslogd/klogd: done
+
+Poky (Yocto Project Reference Distro) 3.0.4 qemuarm /dev/ttyAMA0
+
+qemuarm login: root
+
+root@qemuarm:~# lsusb
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 003: ID 0627:0001 Adomax Technology Co., Ltd QEMU USB Keyboard
+Bus 001 Device 002: ID 0627:0001 Adomax Technology Co., Ltd QEMU USB Tablet
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
