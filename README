@@ -156,8 +156,13 @@ root@qemux86-64:~# poweroff
 BUILDING for arm:
 =================
 Modify the file "conf/local.conf" and set the MACHINE to: 
+ubuntu@ip-172-31-1-209:~/yocto_training/build$ vim conf/local.conf
+
 MACHINE ?= "qemuarm"
 # MACHINE ??= "qemux86-64"
+
+ubuntu@ip-172-31-1-209:~/yocto_training/build$ bitbake core-image-minimal
+
 
 
 
